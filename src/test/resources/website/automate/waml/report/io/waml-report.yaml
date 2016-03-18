@@ -1,0 +1,18 @@
+---
+status: "SUCCESS"
+time: 1.0
+numScenarioTotal: 1
+numScenarioPasses: 1
+numScenarioFailures: 0
+scenarios:
+- test-scenario:
+    path: "/var/waml/test-scenario.yaml"
+    status: "SUCCESS"
+    time: 1.0
+    numActionPasses: 1
+    numActionFailures: 0
+    actions:
+    - open:
+        path: "test-scenario"
+        time: 1.0
+        status: "SUCCESS"
