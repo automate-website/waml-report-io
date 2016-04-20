@@ -27,10 +27,10 @@ public class SimpleScenarioReport implements ScenarioReport {
     @Override
     public void updateStats(){
         for(ActionReport action : actions){
-            ExecutionStatus actionStatus = action.getStatus();
+            ExecutionStatus actionStatus = action.getStats().getStatus();
             status = ExecutionStatus.worstOf(status, actionStatus);
             setNumAction(actionStatus);
-            time += action.getTime();
+            time += action.getStats().getTime();
         }
     }
     

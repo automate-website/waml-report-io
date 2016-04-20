@@ -12,7 +12,8 @@ scenarios:
     numActionPasses: 1
     numActionFailures: 0
     actions:
-    - open:
+    - open: "https://wikipedia.com"
+      stats:
         path: "test-scenario"
         time: 1.0
         status: "SUCCESS"

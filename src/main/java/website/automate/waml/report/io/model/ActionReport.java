@@ -1,26 +1,14 @@
 package website.automate.waml.report.io.model;
 
+import website.automate.waml.io.model.action.Action;
+
 public interface ActionReport {
 
-    String getName();
-
-    void setName(String name);
-
-    String getPath();
+    Action getAction();
     
-    void setPath(String path);
-
-    String getMessage();
-
-    void setMessage(String message);
+    void setAction(Action action);
     
-    ExecutionStatus getStatus();
-
-    void setStatus(ExecutionStatus status);
-
-    Double getTime();
-
-    void setTime(Double time);
+    ActionStats getStats();
     
-    void setTime(Long startTimeInMillis);
+    void setStats(ActionStats stats);
 }

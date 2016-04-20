@@ -1,5 +1,6 @@
 package website.automate.waml.report.io.serializer;
 
+import website.automate.waml.io.model.action.Action;
 import website.automate.waml.report.io.model.SimpleActionReport;
 import website.automate.waml.report.io.model.SimpleScenarioReport;
 
@@ -16,6 +17,8 @@ public class WamlReportSerializerModifier extends BeanSerializerModifier {
           return new ActionReportSerializer(serializer);
       } else if(SimpleScenarioReport.class.isAssignableFrom(beanDesc.getBeanClass())){
           return new ScenarioReportSerializer(serializer);
+      } else if(Action.class.isAssignableFrom(beanDesc.getBeanClass())){
+          return new ActionSerializer(serializer);
       }
       return serializer;
     }

@@ -11,7 +11,9 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
+import website.automate.waml.io.model.action.OpenAction;
 import website.automate.waml.report.io.model.ActionReport;
+import website.automate.waml.report.io.model.ActionStats;
 import website.automate.waml.report.io.model.ScenarioReport;
 import website.automate.waml.report.io.model.SimpleActionReport;
 import website.automate.waml.report.io.model.ExecutionStatus;
@@ -26,7 +28,7 @@ public class WamlReportWriterIT {
     public void wamlReportIsSerialized() throws Exception {
         WamlReport wamlReport = createWamlReport(asList(
                 createScenarioReport("test-scenario", "/var/waml/test-scenario.yaml", asList(
-                        createActionReport("open", "test-scenario", ExecutionStatus.SUCCESS, 1.0)))));
+                        createActionReport("test-scenario", ExecutionStatus.SUCCESS, 1.0)))));
         
         InputStream expectedWamlReportStreamStream = getSystemResourceAsStream("./website/automate/waml/report/io/waml-report.yaml");
         
@@ -36,12 +38,16 @@ public class WamlReportWriterIT {
         assertEquals(IOUtils.toString(expectedWamlReportStreamStream, "UTF-8"), actualWamlReportStream.toString("UTF-8"));
     }
     
-    private ActionReport createActionReport(String name, String path, ExecutionStatus status, Double time){
+    private ActionReport createActionReport(String path, ExecutionStatus status, Double time){
         SimpleActionReport actionReport = new SimpleActionReport();
-        actionReport.setName(name);
-        actionReport.setStatus(status);
-        actionReport.setTime(time);
-        actionReport.setPath(path);
+        OpenAction openAction = new OpenAction();
+        openAction.setUrl("https://wikipedia.com");
+        ActionStats actionStats = new ActionStats();
+        actionStats.setStatus(status);
+        actionStats.setTime(time);
+        actionStats.setPath(path);
+        actionReport.setStats(actionStats);
+        actionReport.setAction(openAction);
         return actionReport;
     }
     

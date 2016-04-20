@@ -1,5 +1,7 @@
 package website.automate.waml.report.io;
 
+import website.automate.waml.io.deserializer.ActionDeserializer;
+import website.automate.waml.io.model.action.Action;
 import website.automate.waml.report.io.deserializer.ActionReportDeserializer;
 import website.automate.waml.report.io.deserializer.ScenarioReportDeserializer;
 import website.automate.waml.report.io.model.ActionReport;
@@ -27,9 +29,10 @@ public class WamlReportConfig {
     private ObjectMapper createMapper(){
         SimpleModule module = new SimpleModule(MODULE_NAME, Version.unknownVersion());
         module.setSerializerModifier(new WamlReportSerializerModifier());
-
+        
         module.addDeserializer(ScenarioReport.class, new ScenarioReportDeserializer());
         module.addDeserializer(ActionReport.class, new ActionReportDeserializer());
+        module.addDeserializer(Action.class, new ActionDeserializer());
         
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         mapper.registerModule(module);

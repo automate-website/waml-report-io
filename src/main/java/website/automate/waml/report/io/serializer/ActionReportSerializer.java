@@ -2,6 +2,7 @@ package website.automate.waml.report.io.serializer;
 
 import java.io.IOException;
 
+import website.automate.waml.io.model.ActionType;
 import website.automate.waml.report.io.model.SimpleActionReport;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -30,13 +31,13 @@ public class ActionReportSerializer extends StdSerializer<SimpleActionReport> im
         ((ResolvableSerializer) defaultSerializer).resolve(provider);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void serialize(SimpleActionReport actionReport, JsonGenerator generator,
             SerializerProvider provider) throws IOException {
+        ActionType actionType = ActionType.findByClazz(actionReport.getAction().getClass());
         generator.writeStartObject();
-        generator.writeFieldName(actionReport.getName());
-        defaultSerializer.serialize(actionReport, generator, provider);
+        generator.writeObjectField(actionType.getName(), actionReport.getAction());
+        generator.writeObjectField("stats", actionReport.getStats());
         generator.writeEndObject();
     }
 
