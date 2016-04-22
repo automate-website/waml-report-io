@@ -2,14 +2,16 @@ package website.automate.waml.report.io.model;
 
 import java.util.List;
 
+import website.automate.waml.io.model.Scenario;
+
 public interface ScenarioReport {
 
+    Scenario getScenario();
+    
+    void setScenario(Scenario scenario);
+    
     void updateStats();
     
-    String getName();
-
-    void setName(String name);
-
     String getMessage();
 
     void setMessage(String message);

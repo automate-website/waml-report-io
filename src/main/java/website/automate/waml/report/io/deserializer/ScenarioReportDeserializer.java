@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import website.automate.waml.io.model.Scenario;
 import website.automate.waml.report.io.model.ScenarioReport;
 import website.automate.waml.report.io.model.SimpleScenarioReport;
 
@@ -30,17 +31,21 @@ public class ScenarioReportDeserializer extends StdDeserializer<ScenarioReport> 
         ObjectNode root = (ObjectNode) mapper.readTree(jsonParser);
 
         Iterator<Entry<String, JsonNode>> elementsIterator = root.fields();
-        String key = null;
-        JsonNode value = null;
+        String scenarioName = null;
+        ObjectNode scenarioReportValue = null;
         while (elementsIterator.hasNext()) {
             Entry<String, JsonNode> element = elementsIterator.next();
-            key = element.getKey();
-            value = element.getValue();
+            scenarioName = element.getKey();
+            scenarioReportValue = ObjectNode.class.cast(element.getValue());
             break;
         }
         
-        ScenarioReport scenarioReport = mapper.convertValue(value, SimpleScenarioReport.class);
-        scenarioReport.setName(key);
+        JsonNode scenarioValue = scenarioReportValue.remove("criteria");
+        Scenario scenario = mapper.convertValue(scenarioValue, Scenario.class);
+        scenario.setName(scenarioName);
+
+        ScenarioReport scenarioReport = mapper.convertValue(scenarioReportValue, SimpleScenarioReport.class);
+        scenarioReport.setScenario(scenario);
         
         return scenarioReport;
     }

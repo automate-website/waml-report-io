@@ -7,8 +7,20 @@ public interface ActionReport {
     Action getAction();
     
     void setAction(Action action);
-    
-    ActionStats getStats();
-    
-    void setStats(ActionStats stats);
+
+    String getPath();
+
+    void setPath(String path);
+
+    String getMessage();
+
+    void setMessage(String message);
+
+    Double getTime();
+
+    void setTime(Double time);
+
+    ExecutionStatus getStatus();
+
+    void setStatus(ExecutionStatus status);
 }

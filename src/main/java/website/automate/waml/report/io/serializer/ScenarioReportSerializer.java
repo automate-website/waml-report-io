@@ -35,7 +35,7 @@ public class ScenarioReportSerializer extends StdSerializer<SimpleScenarioReport
     public void serialize(SimpleScenarioReport scenarioReport, JsonGenerator generator,
             SerializerProvider provider) throws IOException {
         generator.writeStartObject();
-        generator.writeFieldName(scenarioReport.getName());
+        generator.writeFieldName(scenarioReport.getScenario().getName());
         defaultSerializer.serialize(scenarioReport, generator, provider);
         generator.writeEndObject();
     }

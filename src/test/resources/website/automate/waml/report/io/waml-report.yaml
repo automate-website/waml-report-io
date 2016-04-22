@@ -6,14 +6,19 @@ numScenarioPasses: 1
 numScenarioFailures: 0
 scenarios:
 - test-scenario:
-    path: "/var/waml/test-scenario.yaml"
     status: "SUCCESS"
     time: 1.0
     numActionPasses: 1
     numActionFailures: 0
+    path: "/var/waml/test-scenario.yaml"
+    criteria:
+      precedence: -1
+      fragment: false
+      timeout: "5"
     actions:
-    - open: "https://wikipedia.com"
-      stats:
-        path: "test-scenario"
-        time: 1.0
+    - open:
         status: "SUCCESS"
+        time: 1.0
+        path: "test-scenario"
+        criteria:
+          url: "https://wikipedia.com"

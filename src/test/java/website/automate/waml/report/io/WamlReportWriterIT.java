@@ -11,9 +11,9 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
+import website.automate.waml.io.model.Scenario;
 import website.automate.waml.io.model.action.OpenAction;
 import website.automate.waml.report.io.model.ActionReport;
-import website.automate.waml.report.io.model.ActionStats;
 import website.automate.waml.report.io.model.ScenarioReport;
 import website.automate.waml.report.io.model.SimpleActionReport;
 import website.automate.waml.report.io.model.ExecutionStatus;
@@ -42,19 +42,19 @@ public class WamlReportWriterIT {
         SimpleActionReport actionReport = new SimpleActionReport();
         OpenAction openAction = new OpenAction();
         openAction.setUrl("https://wikipedia.com");
-        ActionStats actionStats = new ActionStats();
-        actionStats.setStatus(status);
-        actionStats.setTime(time);
-        actionStats.setPath(path);
-        actionReport.setStats(actionStats);
+        actionReport.setStatus(status);
+        actionReport.setTime(time);
+        actionReport.setPath(path);
         actionReport.setAction(openAction);
         return actionReport;
     }
     
     private ScenarioReport createScenarioReport(String name, String path, List<ActionReport> actionReports){
         ScenarioReport scenarioReport = new SimpleScenarioReport();
+        Scenario scenario = new Scenario();
+        scenario.setName(name);
         scenarioReport.setActions(actionReports);
-        scenarioReport.setName(name);
+        scenarioReport.setScenario(scenario);
         scenarioReport.setPath(path);
         return scenarioReport;
     }

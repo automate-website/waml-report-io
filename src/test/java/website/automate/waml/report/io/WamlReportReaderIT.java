@@ -25,6 +25,8 @@ public class WamlReportReaderIT {
         assertThat(wamlReport.getStatus(), is(SUCCESS));
         ScenarioReport scenarioReport = wamlReport.getScenarios().get(0);
         assertThat(scenarioReport.getStatus(), is(SUCCESS));
-        assertThat(scenarioReport.getName(), is("test-scenario"));
+        assertThat(scenarioReport.getPath(), is("/var/waml/test-scenario.yaml"));
+        assertThat(scenarioReport.getScenario().getName(), is("test-scenario"));
+        assertThat(scenarioReport.getActions().size(), is(1));
     }
 }

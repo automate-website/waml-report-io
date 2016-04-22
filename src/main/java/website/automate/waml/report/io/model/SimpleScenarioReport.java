@@ -3,15 +3,21 @@ package website.automate.waml.report.io.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import website.automate.waml.io.model.Scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"status", "message", "time", "numActionPasses", "numActionFailures", "path", "criteria", "actions"})
 public class SimpleScenarioReport implements ScenarioReport {
 
-    @JsonIgnore
-    private String name;
-    
+    @JsonProperty("criteria")
+    @JsonIgnoreProperties("name")
+    private Scenario scenario;
+
     private String message;
-    
+
     private String path;
 
     private ExecutionStatus status = ExecutionStatus.SUCCESS;
@@ -23,34 +29,33 @@ public class SimpleScenarioReport implements ScenarioReport {
     private Integer numActionFailures = 0;
 
     private List<ActionReport> actions = new ArrayList<>();
-    
+
     @Override
-    public void updateStats(){
-        for(ActionReport action : actions){
-            ExecutionStatus actionStatus = action.getStats().getStatus();
+    public void updateStats() {
+        for (ActionReport action : actions) {
+            ExecutionStatus actionStatus = action.getStatus();
             status = ExecutionStatus.worstOf(status, actionStatus);
             setNumAction(actionStatus);
-            time += action.getStats().getTime();
+            time += action.getTime();
         }
     }
-    
-    private void setNumAction(ExecutionStatus actionStatus){
-        if(actionStatus == ExecutionStatus.SUCCESS){
+
+    private void setNumAction(ExecutionStatus actionStatus) {
+        if (actionStatus == ExecutionStatus.SUCCESS) {
             this.numActionPasses++;
         } else {
             this.numActionFailures++;
         }
     }
-    
-    
+
     @Override
-    public String getName() {
-        return name;
+    public Scenario getScenario() {
+        return scenario;
     }
 
     @Override
-    public void setName(String name) {
-        this.name = name;
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
     }
 
     @Override

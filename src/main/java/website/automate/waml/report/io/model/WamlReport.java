@@ -3,6 +3,9 @@ package website.automate.waml.report.io.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"status", "message", "time", "numScenarioTotal", "numActionPasses", "numActionFailures"})
 public class WamlReport {
 
     private ExecutionStatus status = ExecutionStatus.SUCCESS;

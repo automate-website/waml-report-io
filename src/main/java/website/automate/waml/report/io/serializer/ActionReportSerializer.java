@@ -31,13 +31,14 @@ public class ActionReportSerializer extends StdSerializer<SimpleActionReport> im
         ((ResolvableSerializer) defaultSerializer).resolve(provider);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void serialize(SimpleActionReport actionReport, JsonGenerator generator,
             SerializerProvider provider) throws IOException {
         ActionType actionType = ActionType.findByClazz(actionReport.getAction().getClass());
         generator.writeStartObject();
-        generator.writeObjectField(actionType.getName(), actionReport.getAction());
-        generator.writeObjectField("stats", actionReport.getStats());
+        generator.writeFieldName(actionType.getName());
+        defaultSerializer.serialize(actionReport, generator, provider);
         generator.writeEndObject();
     }
 
