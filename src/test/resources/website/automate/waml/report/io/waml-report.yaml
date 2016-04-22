@@ -15,7 +15,7 @@ scenarios:
       precedence: -1
       fragment: false
       timeout: "5"
-    actions:
+    steps:
     - open:
         status: "SUCCESS"
         time: 1.0

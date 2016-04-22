@@ -53,7 +53,7 @@ public class WamlReportWriterIT {
         ScenarioReport scenarioReport = new SimpleScenarioReport();
         Scenario scenario = new Scenario();
         scenario.setName(name);
-        scenarioReport.setActions(actionReports);
+        scenarioReport.setSteps(actionReports);
         scenarioReport.setScenario(scenario);
         scenarioReport.setPath(path);
         return scenarioReport;

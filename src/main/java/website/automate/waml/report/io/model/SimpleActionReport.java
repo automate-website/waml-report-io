@@ -2,6 +2,7 @@ package website.automate.waml.report.io.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import website.automate.waml.io.model.action.Action;
 
@@ -44,9 +45,14 @@ public class SimpleActionReport implements ActionReport {
         return time;
     }
 
+    @JsonSetter
     @Override
     public void setTime(Double time) {
         this.time = time;
+    }
+    
+    public void setTime(Long startTimeInMillis){
+        this.time = (System.currentTimeMillis() - startTimeInMillis) / 1000.0; 
     }
 
     @Override

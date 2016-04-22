@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"status", "message", "time", "numActionPasses", "numActionFailures", "path", "criteria", "actions"})
+@JsonPropertyOrder({"status", "message", "time", "numActionPasses", "numActionFailures", "path", "criteria", "steps"})
 public class SimpleScenarioReport implements ScenarioReport {
 
     @JsonProperty("criteria")
@@ -28,15 +28,15 @@ public class SimpleScenarioReport implements ScenarioReport {
 
     private Integer numActionFailures = 0;
 
-    private List<ActionReport> actions = new ArrayList<>();
+    private List<ActionReport> steps = new ArrayList<>();
 
     @Override
     public void updateStats() {
-        for (ActionReport action : actions) {
-            ExecutionStatus actionStatus = action.getStatus();
+        for (ActionReport step : steps) {
+            ExecutionStatus actionStatus = step.getStatus();
             status = ExecutionStatus.worstOf(status, actionStatus);
             setNumAction(actionStatus);
-            time += action.getTime();
+            time += step.getTime();
         }
     }
 
@@ -119,12 +119,12 @@ public class SimpleScenarioReport implements ScenarioReport {
     }
 
     @Override
-    public List<ActionReport> getActions() {
-        return actions;
+    public List<ActionReport> getSteps() {
+        return steps;
     }
 
     @Override
-    public void setActions(List<ActionReport> actions) {
-        this.actions = actions;
+    public void setSteps(List<ActionReport> steps) {
+        this.steps = steps;
     }
 }

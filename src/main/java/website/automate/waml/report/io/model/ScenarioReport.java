@@ -36,7 +36,7 @@ public interface ScenarioReport {
 
     void setNumActionFailures(Integer numActionFailures);
 
-    List<ActionReport> getActions();
+    List<ActionReport> getSteps();
 
-    void setActions(List<ActionReport> actions);
+    void setSteps(List<ActionReport> steps);
 }
