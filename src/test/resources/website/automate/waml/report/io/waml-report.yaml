@@ -22,3 +22,7 @@ scenarios:
         path: "test-scenario"
         criteria:
           url: "https://wikipedia.com"
+        log:
+        - level: "INFO"
+          time: "2007-12-24 18:21:00"
+          message: "Hallo"

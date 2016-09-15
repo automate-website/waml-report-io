@@ -1,5 +1,7 @@
 package website.automate.waml.report.io.model;
 
+import java.util.List;
+
 import website.automate.waml.io.model.action.Action;
 
 public interface ActionReport {
@@ -23,4 +25,8 @@ public interface ActionReport {
     ExecutionStatus getStatus();
 
     void setStatus(ExecutionStatus status);
+    
+    List<LogEntry> getLogEntries();
+    
+    void setLogEntries(List<LogEntry> logEntries);
 }

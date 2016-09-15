@@ -17,6 +17,7 @@ import website.automate.waml.report.io.model.ActionReport;
 import website.automate.waml.report.io.model.ScenarioReport;
 import website.automate.waml.report.io.model.SimpleActionReport;
 import website.automate.waml.report.io.model.ExecutionStatus;
+import website.automate.waml.report.io.model.LogEntry;
 import website.automate.waml.report.io.model.SimpleScenarioReport;
 import website.automate.waml.report.io.model.WamlReport;
 
@@ -46,7 +47,12 @@ public class WamlReportWriterIT {
         actionReport.setTime(time);
         actionReport.setPath(path);
         actionReport.setAction(openAction);
+        actionReport.setLogEntries(asList(createLogEntry()));
         return actionReport;
+    }
+    
+    private LogEntry createLogEntry(){
+      return new LogEntry("INFO", "2007-12-24 18:21:00", "Hallo");
     }
     
     private ScenarioReport createScenarioReport(String name, String path, List<ActionReport> actionReports){
