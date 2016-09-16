@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.7.0]
 ### Changed
 - updated to waml-io 0.6.1
 - added convenience constructor for log entry
@@ -50,4 +51,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [0.4.1]: https://github.com/automate-website/waml-report-io/compare/0.4.0...0.4.1
 [0.5.0]: https://github.com/automate-website/waml-report-io/compare/0.4.1...0.5.0
 [0.6.0]: https://github.com/automate-website/waml-report-io/compare/0.5.0...0.6.0
-[Unreleased]: https://github.com/automate-website/waml-report-io/compare/0.6.0...master
+[0.7.0]: https://github.com/automate-website/waml-report-io/compare/0.6.0...0.7.0
+[Unreleased]: https://github.com/automate-website/waml-report-io/compare/0.7.0...master
