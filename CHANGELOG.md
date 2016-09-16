@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- updated to waml-io 0.6.1
+- added convenience constructor for log entry
+
 ## [0.6.0]
 ### Changed
 - updated to waml-io 0.6.0

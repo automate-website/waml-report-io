@@ -18,7 +18,8 @@ public class LogEntry {
   public enum LogLevel {
     INFO,
     WARN,
-    ERROR;
+    ERROR,
+    DEBUG;
   }
   
   private final LogLevel level;
@@ -27,15 +28,19 @@ public class LogEntry {
   
   private final String message;
 
-  @JsonCreator
-  public LogEntry(@JsonProperty("level") String level, @JsonProperty("time") String time, @JsonProperty("message") String message) {
+  public LogEntry(LogLevel level, Date time, String message){
     super();
-    this.level = LogLevel.valueOf(level);
-    this.time = deserialize(time);
+    this.level = level;
+    this.time = time;
     this.message = message;
   }
+  
+  @JsonCreator
+  public LogEntry(@JsonProperty("level") String level, @JsonProperty("time") String time, @JsonProperty("message") String message) {
+    this(LogLevel.valueOf(level), deserialize(time), message);
+  }
 
-  private Date deserialize(String time){
+  private static Date deserialize(String time){
     try {
       return DATE_FORMAT.parse(time);
     } catch (ParseException e) {
