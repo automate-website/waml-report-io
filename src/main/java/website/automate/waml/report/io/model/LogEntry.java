@@ -1,10 +1,12 @@
 package website.automate.waml.report.io.model;
 
 import static java.text.MessageFormat.format;
+import static java.util.EnumSet.of;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,6 +23,14 @@ public class LogEntry {
     ERROR,
     DEBUG;
   }
+
+  public static Set<LogLevel> INFO_LEVELS = of(LogLevel.INFO, LogLevel.WARN, LogLevel.ERROR);
+  
+  public static Set<LogLevel> DEBUG_LEVELS = of(LogLevel.DEBUG, LogLevel.INFO, LogLevel.WARN, LogLevel.ERROR);
+  
+  public static Set<LogLevel> WARN_LEVELS = of(LogLevel.WARN, LogLevel.ERROR);
+  
+  public static Set<LogLevel> ERROR_LEVELS = of(LogLevel.ERROR);
   
   private final LogLevel level;
   
@@ -60,6 +70,18 @@ public class LogEntry {
     return time;
   }
   
+  public static boolean isIncluded(LogLevel minimalLevel, LogLevel level){
+      switch(minimalLevel){
+      case DEBUG:
+          return DEBUG_LEVELS.contains(level);
+      case INFO:
+          return INFO_LEVELS.contains(level);
+      case WARN:
+          return WARN_LEVELS.contains(level);
+      default:
+          return ERROR_LEVELS.contains(level);
+      }
+  }
 
   @JsonProperty("time")
   public String getTimeStr(){
