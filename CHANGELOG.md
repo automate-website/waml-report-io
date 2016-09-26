@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- updated to waml-io 0.7.0
+
 ## [0.8.0]
 ### Added
 - convenience method to filter logging statements
