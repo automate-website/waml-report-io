@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.9.0]
 ### Changed
 - updated to waml-io 0.7.0
 
@@ -60,4 +61,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [0.6.0]: https://github.com/automate-website/waml-report-io/compare/0.5.0...0.6.0
 [0.7.0]: https://github.com/automate-website/waml-report-io/compare/0.6.0...0.7.0
 [0.8.0]: https://github.com/automate-website/waml-report-io/compare/0.7.0...0.8.0
-[Unreleased]: https://github.com/automate-website/waml-report-io/compare/0.8.0...master
+[0.9.0]: https://github.com/automate-website/waml-report-io/compare/0.8.0...0.9.0
+[Unreleased]: https://github.com/automate-website/waml-report-io/compare/0.9.0...master
