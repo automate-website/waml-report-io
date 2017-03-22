@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+- upgraded to waml-io 1.0.0
+
 ## [0.9.0]
 ### Changed
 - updated to waml-io 0.7.0
